@@ -1,0 +1,26 @@
+--- # ansible-playbook -i /tmp/inventory     user.yaml 
+- name: User playbook
+  hosts: all
+  become: true
+  become_method: sudo 
+  tasks:
+  - name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
+    ansible.builtin.user:
+      name: "{{ item }}"
+    with_items:
+    - johnd
+    - ben
+    - tom
+    - lisa
+    - kate
+
+  - name: Ensure group "somegroup" exists
+    ansible.builtin.group:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - somegroup
+    - sales
+    - marketing
+    - billing
+...
