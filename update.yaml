@@ -1,0 +1,11 @@
+--- # ansible-playbook -i /tmp/inventory     update.yaml 
+- name: Update playbook
+  hosts: all
+  become: true
+  become_method: sudo 
+  tasks:
+  - name: Upgrade  packages
+    ansible.builtin.package:
+      name: "*"
+      state: latest      
+...

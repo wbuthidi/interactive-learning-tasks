@@ -1,0 +1,19 @@
+--- # create users on amazon and ubuntu
+- name: User playbook
+  hosts: all
+  become: true
+  become_method: sudo 
+  tasks:
+  - name: Create user accounts
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: present
+      generate_ssh_key: yes
+    with_items:
+    - bob
+    - lisa
+    - ben
+    - katy
+
+
+...
